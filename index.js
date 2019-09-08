@@ -1,11 +1,23 @@
 const express = require('express');
 const path = require('path');
+const members = require('./members')
 
 const app = express();
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'))
+const logger = (req, res, next) => {
+    console.log(`${req.protocol}://${req.get('host')}${req.originalUrl}`);
+    next();
+}
+
+app.use(logger);
+
+// A simple REST API
+app.get('/api/members', (req, res) => {
+    res.json(members);
 });
+
+// Setting static folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 // For deployment purposes
 const PORT = process.env.PORT || 5000;
