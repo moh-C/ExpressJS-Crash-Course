@@ -1,0 +1,22 @@
+{
+  "name": "expressjs-crash-course",
+  "version": "1.0.0",
+  "description": "Just a crash course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moh-C/ExpressJS-Crash-Course.git"
+  },
+  "author": "Aaron",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/moh-C/ExpressJS-Crash-Course/issues"
+  },
+  "homepage": "https://github.com/moh-C/ExpressJS-Crash-Course#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
