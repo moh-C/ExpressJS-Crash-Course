@@ -21,7 +21,7 @@ router.get('/:id', (req, res) => {
 // Create Member
 router.post('/', (req, res) => {
     const newMember = {
-        id: uuid.v4(),
+        id: req.body.id,
         name: req.body.name,
         status: req.body.status
     }
@@ -48,11 +48,23 @@ router.put('/:id', (req, res) => {
                 member.status = updMember.status ? updMember.status : member.status;
                 res.json({ msg: 'Member Updated!', member });
             }
-        })
+        });
+
 
     } else {
         res.status(400).json({ msg: `Member with id of ${req.params.id} not found :|` });
     }
 });
+
+// Deleting a member
+router.delete('/:id', (req, res) => {
+    const found = members.some(member => member.id === parseInt(req.params.id));
+    if (found) {
+        res.json({ msg: `Member ${req.params.id} deleted!`, members: members.filter(member => member.id !== parseInt(req.params.id)) });
+    } else {
+        res.status(400).json({ msg: `Member with id of ${req.params.id} not found :|` });
+    }
+});
+
 
 module.exports = router
